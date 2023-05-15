@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1></h1>
+
+<form action="/pedidos/guardar" method="post">
+    <h1>Datos del pedido</h1>
+    <input type="hidden" name="ORDER_NUM" value="<%= (pedido ? pedido.ORDER_NUM: '') %>" size="30" maxlength="30">
+    <input type="hidden" name="CUSTOMER_ID" value="<%=cliente%>" size="30" maxlength="30">
+    <table>
+        <tr>
+            <td>Producto: </td>
+            <td>
+                <select name="PRODUCT_ID">
+                    <%
+                    productos.forEach(function(producto){
+
+                        %>
+                    <option value="<%=producto.PRODUCT_ID%>" label="<%=producto.DESCRIPTION%>  :  <%=producto.PURCHASE_COST%>"></option>
+                    <%});%>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Cantidad: </td>
+            <td> <input type="number" name="QUANTITY" value="<%= (pedido ? pedido.QUANTITY: '') %>" size="40" maxlength="40">  </td>
+        </tr>
+        <tr>
+            <td colspan="2"><input value="Guardar" type="submit"> </td>
+        </tr>
+    </table>
+
+</form>
+</body>
+</html>

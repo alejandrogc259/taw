@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1></h1>
+
+<form action="/productos/guardar" method="post">
+    <h1>Datos del producto</h1>
+    <input type="hidden" name="CUSTOMER_ID" value="<%= (producto ? producto.PRODUCT_ID: '') %>" size="30" maxlength="30">
+    <table>
+        <tr>
+            <td>Manufacturer: </td>
+            <td> <select name="MANUFACTURER">
+                    <%
+                        manufacturers.forEach(function(manufacturer){
+                            var selected = "";
+                            if (producto && producto.MANUFACTURER_ID == manufacturer.MANUFACTURER_ID) {
+                                selected = "SELECTED"
+                            }
+
+
+                    %>
+                    <option value="<%= manufacturer.MANUFACTURER_ID%>" label="<%= manufacturer.NAME %>" <%=selected%>>
+                    </option>
+                    <%});%>
+                </select>
+
+
+            </td>
+        </tr>
+        <tr>
+            <td>Product code: </td>
+            <td> <select name="PRODUCT_CODE">
+                    <%
+                    productCodes.forEach(function(code){
+                        var selected = "";
+                        if (producto && producto.PRODUCT_CODE == code.PROD_CODE) {
+                            selected = "SELECTED"
+                        }
+
+
+                    %>
+                    <option value="<%= code.PROD_CODE%>" label="<%= code.DESCRIPTION %>" <%=selected%>>
+                    </option>
+                    <%});%>
+                </select>
+
+
+            </td>
+        </tr>
+        <tr>
+            <td>Purchase Cost: </td>
+            <td> <input type="number" name="PURCHASE_COST" value="<%= (producto ? producto.PURCHASE_COST: '') %>" size="40" maxlength="40">  </td>
+        </tr>
+        <tr>
+            <td>Quantity: </td>
+            <td> <input type="number" name="QUANTITY_ON_HAND" value="<%= (producto ? producto.QUANTITY_ON_HAND: '') %>" size="30" maxlength="30">
+            </td>
+        </tr>
+        <tr>
+            <td>Markup: </td>
+            <td> <input type="number" name="MARKUP" value="<%= (producto ? producto.MARKUP: '') %>" size="25" maxlength="25">
+            </td>
+        </tr>
+        <tr>
+            <td>Available: </td>
+            <td> <input type="checkbox" name="AVAILABLE" checked="<%= (producto ? producto.AVAILABLE: '') %>">
+            </td>
+        </tr>
+        <tr>
+            <td>Description: </td>
+            <td> <input type="text" name="DESCRIPTION" value="<%= (producto ? producto.DESCRIPTION: '') %>" size="12" maxlength="12">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><input value="Guardar" type="submit"> </td>
+        </tr>
+    </table>
+
+</form>
+</body>
+</html>

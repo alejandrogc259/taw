@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1></h1>
+
+<table>
+    <tr>
+        <th>PRODUCT_ID</th>
+        <th>QUANTITY</th>
+        <th>SHIPPING_COST</th>
+        <th>SALES_DATE</th>
+        <th>SHIPPING_DATE</th>
+        <th>FREIGHT_COMPANY</th>
+        <th>DESCRIPTION OF THE PRODUCT</th>
+        <th>PURCHASE COST OF THE PRODUCT</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <% pedidos.forEach(function(pedido) {
+        let descripcion;
+        let precio;
+        productos.forEach(function(producto){
+            if(producto.PRODUCT_ID === pedido.PRODUCT_ID){
+                descripcion = producto.DESCRIPTION;
+                precio = producto.PURCHASE_COST;
+            }
+        })
+
+    %>
+        <tr>
+            <td> <%= pedido.PRODUCT_ID %> </td>
+            <td> <%= pedido.QUANTITY %> </td>
+            <td> <%= pedido.SHIPPING_COST %> </td>
+            <td> <%= pedido.SALES_DATE %> </td>
+            <td> <%= pedido.SHIPPING_DATE %> </td>
+            <td> <%= pedido.FREIGHT_COMPANY %> </td>
+            <td> <%= descripcion%> </td>
+            <td> <%= precio %> </td>
+        </tr>
+    <% }); %>
+</table>
+<a href="/pedidos/nuevoPedido/nuevo?idCliente=<%=cliente%>">Nuevo ...</a>
+</body>
+</html>
